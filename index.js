@@ -8,7 +8,7 @@ const cookieParser = require('cookie-parser');
 const userRoutes = require("./routes/user");
 const app = express();
 var cors = require("cors");
-const PORT = process.env.PORT || 4000;
+const PORT = process.env.PORT || 3000;
 
 if (!fs.existsSync('uploads')) {
   fs.mkdirSync('uploads');
