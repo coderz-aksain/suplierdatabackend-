@@ -9,6 +9,7 @@ const fileSchema = new mongoose.Schema({
   supplierData:Object,
   suppliername:String,
   paymentterm:String,
+  
   // fileData:Object,
   uploadDate: { type: Date, default: Date.now },
 });
