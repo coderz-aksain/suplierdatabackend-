@@ -39,11 +39,15 @@
 const File = require("../models/File");
 
 exports.UpdateUser = async (req, res) => {
+    // console.log(req.body)
     try {
         // Destructure the id from req.params
         const {id}  = req.params;
         console.log("Id is: ", id)
-        const { suppliername, paymentterm } = req.body;
+        const { supplierName, paymentTerms } = req.body;
+
+
+ console.log(supplierName,paymentTerms)
 
         if (!id) {
             return res.status(400).json({
@@ -57,13 +61,16 @@ exports.UpdateUser = async (req, res) => {
 
         // Update the document
         const todo = await File.findByIdAndUpdate(
-            id,
-            { suppliername, paymentterm, updatedAt: Date.now() },
-            { new: true } // This option returns the updated document
+           {_id:id},
+            { suppliername:supplierName, paymentterm:paymentTerms }
+           // This option returns the updated document
         );
+        await todo.save()
 
+console.log("todo",todo)
         if (!todo) {
             return res.status(404).json({
+
                 success: false,
                 message: "Document not found"
             });
@@ -71,8 +78,7 @@ exports.UpdateUser = async (req, res) => {
 
         res.status(200).json({
             success: true,
-            suppliername,
-            paymentterm,
+          
             data: todo,
             message: "Updated Successfully"
         });
