@@ -62,12 +62,14 @@ const { uploadFile } = require('../controller/uploadfile');
 const FileModel = require('../models/File'); // Import your Mongoose model for file storage
 const { signup, login } = require('../controller/Auth');
 const { UpdateUser } = require("../controller/UpdateUser.js");
+const {deleteUser} = require("../controller/deleteUser.js");
 const upload = multer({ dest: 'uploads/' });
 
 router.post("/createUser", createUser);
 router.get("/getallUsers", getUser);
 router.post('/login', login);
 router.put("/updateuser/:id", UpdateUser);
+router.delete("/deleteUser/:id",deleteUser);
 router.post('/upload', upload.single('csvfile'), async (req, res) => {
     if (!req.file) {
         return res.status(400).send('No file uploaded.');
