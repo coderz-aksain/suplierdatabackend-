@@ -26,7 +26,7 @@ exports.getUser = async (req, res) => {
 		const responseData = {
 			success: true,
 			data: userData,
-			topPaymentTerm: paymentTermCounts.length > 0 ? paymentTermCounts[0] : null
+			topPaymentTerms: paymentTermCounts.length > 1 ? [paymentTermCounts[0], paymentTermCounts[1]] : null
 		};
 		
 
