@@ -14,7 +14,7 @@ exports.getUser = async (req, res) => {
 				$sort: { count: -1 }
 			},
 			{
-				$limit: 1
+				$limit: 2
 			}
 		]);
 		console.log(paymentTermCounts);
@@ -28,9 +28,11 @@ exports.getUser = async (req, res) => {
 			data: userData,
 			topPaymentTerm: paymentTermCounts.length > 0 ? paymentTermCounts[0] : null
 		};
+		
 
 		// Send the response with the retrieved documents and the top payment term count
 		res.json(responseData);
+		
 
 	} catch (error) {
 		// Handle any errors that occurred during the process
